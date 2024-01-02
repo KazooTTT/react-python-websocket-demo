@@ -5,7 +5,7 @@ import time
 from flask_socketio import SocketIO, join_room
 from flask import Flask, request, send_from_directory
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='../build', static_url_path='/')
 app.config['SECRET_KEY'] = 'secret!'
 socketio = SocketIO(
     app, cors_allowed_origins='*', sync_mode='eventlet')
