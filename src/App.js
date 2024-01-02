@@ -3,8 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import io from 'socket.io-client';
 
-const socket = io('localhost:5001');
-
+const socket = io('localhost:5002');
 
 function App() {
   const [isConnected, setIsConnected] = useState(socket.connected);

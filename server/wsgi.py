@@ -1,11 +1,14 @@
-from flask import Flask, request
-from flask_socketio import SocketIO, join_room
-import time
+import eventlet
+
 import threading
+import time
+from flask_socketio import SocketIO, join_room
+from flask import Flask, request
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret!'
-socketio = SocketIO(app, cors_allowed_origins='http://localhost:3000')
+socketio = SocketIO(
+    app, cors_allowed_origins='http://localhost:3000', sync_mode='eventlet')
 
 
 @app.route('/')
@@ -52,5 +55,6 @@ def send_message_to_client(session_id, message):
 
 
 if __name__ == '__main__':
-    # threading.Thread(target=test_message_loop).start()
-    socketio.run(app, host='0.0.0.0', port="5001", debug=True)
+    eventlet.monkey_patch()
+    threading.Thread(target=test_message_loop).start()
+    socketio.run(app, host='0.0.0.0', port="5002", debug=True)
