@@ -2,7 +2,7 @@ import eventlet
 
 import threading
 import time
-from flask_socketio import SocketIO, join_room
+from flask_socketio import SocketIO, join_room, send_from_directory
 from flask import Flask, request
 
 app = Flask(__name__)
