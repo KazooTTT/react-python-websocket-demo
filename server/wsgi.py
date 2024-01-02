@@ -12,9 +12,16 @@ socketio = SocketIO(
 
 
 @app.route('/')
-def hello_world():  # put application's code here
-    return 'Hello World!'
+def serve():
+    return send_from_directory(app.static_folder, 'index.html')
 
+
+@app.route('/<path:path>')
+def static_proxy(path):
+    # 在这里发送前端应用的所有文件
+    file_name = path.split('/')[-1]
+    dir_name = os.path.join(app.static_folder, '/'.join(path.split('/')[:-1]))
+    return send_from_directory(dir_name, file_name)
 
 @app.route('/test')
 def restful_test():  # put application's code here

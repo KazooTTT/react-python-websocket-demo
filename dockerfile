@@ -1,5 +1,5 @@
 # For more information, please refer to https://aka.ms/vscode-docker-python
-FROM nikolaik/python-nodejs:python3.10-nodejs16-alpine
+FROM nikolaik/python-nodejs:python3.10-nodejs16-slim
 
 EXPOSE 5002
 
@@ -29,4 +29,4 @@ RUN adduser -u 5678 --disabled-password --gecos "" appuser && chown -R appuser /
 USER appuser
 
 # During debugging, this entry point will be overridden. For more information, please refer to https://aka.ms/vscode-docker-python-debug
-CMD ["python","server/app.py"]
+CMD ["python","server/wsgi.py"]
