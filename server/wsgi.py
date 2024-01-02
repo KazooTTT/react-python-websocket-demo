@@ -8,7 +8,7 @@ from flask import Flask, request
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret!'
 socketio = SocketIO(
-    app, cors_allowed_origins='http://localhost:3000', sync_mode='eventlet')
+    app, cors_allowed_origins='*', sync_mode='eventlet')
 
 
 @app.route('/')
