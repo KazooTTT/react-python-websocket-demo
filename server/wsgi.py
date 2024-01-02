@@ -8,7 +8,7 @@ from flask import Flask, request, send_from_directory
 app = Flask(__name__, static_folder='../build', static_url_path='/')
 app.config['SECRET_KEY'] = 'secret!'
 socketio = SocketIO(
-    app, cors_allowed_origins=["http://localhost:3000", "http://localhost:5001"], sync_mode='eventlet')
+    app, cors_allowed_origins=["http://localhost:3000", "http://localhost:5001", "https://ws-demo.zeabur.app"], sync_mode='eventlet')
 
 
 @app.route('/')
