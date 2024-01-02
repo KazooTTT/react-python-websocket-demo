@@ -1,27 +1,19 @@
 import eventlet
-import os
+
 import threading
 import time
 from flask_socketio import SocketIO, join_room
-from flask import Flask, request, send_from_directory
+from flask import Flask, request
 
-app = Flask(__name__, static_folder='../build', static_url_path='/')
+app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret!'
 socketio = SocketIO(
-    app, cors_allowed_origins=["http://localhost:3000", "http://localhost:5001", "https://ws-demo.zeabur.app"], sync_mode='eventlet')
+    app, cors_allowed_origins='http://localhost:3000', sync_mode='eventlet')
 
 
 @app.route('/')
-def serve():
-    return send_from_directory(app.static_folder, 'index.html')
-
-
-@app.route('/<path:path>')
-def static_proxy(path):
-    # 在这里发送前端应用的所有文件
-    file_name = path.split('/')[-1]
-    dir_name = os.path.join(app.static_folder, '/'.join(path.split('/')[:-1]))
-    return send_from_directory(dir_name, file_name)
+def hello_world():  # put application's code here
+    return 'Hello World!'
 
 
 @app.route('/test')
