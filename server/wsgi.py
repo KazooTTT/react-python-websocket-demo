@@ -64,5 +64,5 @@ def send_message_to_client(session_id, message):
 
 if __name__ == '__main__':
     eventlet.monkey_patch()
-    # threading.Thread(target=test_message_loop).start()
+    threading.Thread(target=test_message_loop).start()
     socketio.run(app, host='0.0.0.0', port="5002", debug=True)
