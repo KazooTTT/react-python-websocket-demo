@@ -3,7 +3,8 @@ import logo from './logo.svg';
 import './App.css';
 import io from 'socket.io-client';
 
-const socket = io('localhost:5002');
+const serverAddress = process.env.NODE_ENV === 'production' ? window.location.origin : 'localhost:5001';
+const socket = io(serverAddress);
 
 function App() {
   const [isConnected, setIsConnected] = useState(socket.connected);
